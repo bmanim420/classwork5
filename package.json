@@ -1,0 +1,23 @@
+{
+  "name": "classwork5",
+  "version": "1.0.0",
+  "description": "simple node server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmanim420/classwork5.git"
+  },
+  "keywords": [
+    "AKH"
+  ],
+  "author": "Anim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bmanim420/classwork5/issues"
+  },
+  "homepage": "https://github.com/bmanim420/classwork5#readme"
+}
