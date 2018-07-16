@@ -12,6 +12,12 @@ var http = require('http');
     res.sendFile(__dirname+'/about.html');
   });
   
+  app.get('/form', function(req, res){
+    res.sendFile(__dirname+'/form.html');
+  });
+  
   server.listen(process.env.PORT, process.env.IP, function(){
     console.log('Server running');
   });
+  
+  
