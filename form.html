@@ -7,11 +7,28 @@
 
 <form >
     <h3>Username: </h3>
-<input type="text" name="fname"><br>
+<input type="text" name="fname" id="username"><br>
 <h3>Email: </h3>
-<input type="text" name="lname"><br><br>
-<input type="button" onclick="formSubmit()" value="Submit on Console">
+<input type="text" name="lname" id="email"><br><br>
+<input type="button" onclick="formSubmit()" value="Submit on Console" id="submit">
 </form>
 
+
+<script>
+  var user = {};
+    $("#submit").click(function(event){
+      user.username=$("#username").val();
+      user.email=$("#email").val();
+      $.ajax({
+        method: 'POST',
+        url: "/form",
+        data: user
+      }).done(function(response){
+        window.location.replace('/about');
+      }).fail(function(response){
+        $("#error").text("Something went wrong! Try again.");
+      });
+    });
+  </script>
 </body>
 </html>
