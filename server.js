@@ -6,7 +6,11 @@ var http = require('http');
   
   app.get('/', function(req, res){
     res.sendFile(__dirname+'/index.html');
-  })
+  });
+  
+  app.post('/submit_user', function(req, res){
+    console.log(req.body);
+  });
   
   app.get('/about', function(req, res){
     res.sendFile(__dirname+'/about.html');
