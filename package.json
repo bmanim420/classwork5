@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/bmanim420/classwork5#readme",
   "dependencies": {
-    "body-parser": "^1.18.3"
+    "body-parser": "^1.18.3",
+    "mongoose": "^5.2.5"
   }
 }
