@@ -6,12 +6,9 @@ var http = require('http');
   app.use(bodyParser.urlencoded({extended:true}));
   var server = http.Server(app);
   var mongo = require('mongodb');
-  //for local
-  //var db, uri = "mongodb://localhost:27817";
-  //for c9
   var db, uri = "mongodb://"+process.env.IP+":27017";
   const mongoose = require('mongoose');
-  mongoose.connect("mongodb://localhost:27017/node-cw8");
+  mongoose.connect("mongodb://localhost:27017/TechSupport");
   
   
   mongoose.connection.on('error', function(){
@@ -23,7 +20,8 @@ var http = require('http');
       type: String,
       required: "Name is required"
     },
-      email: String
+      email: String,
+      issue: String
   });
   var User  = mongoose.model('User', userSchema);
   
@@ -33,16 +31,10 @@ var http = require('http');
             if(err){
               console.log('Could not connect to MongoDB');
             }else{
-              db = client.db('node-cw8');
+              db = client.db('TechSupport');
             }
           });
-  /*
-  var save = function(form_data){
-    db.createCollection('users', function(err, collection){});
-    var collection = db.collection('users');
-    collection.save(form_data);
-  }
-  */
+ 
   app.get('/', function(req, res){
     res.sendFile(__dirname+'/index.html');
   });
@@ -61,12 +53,14 @@ var http = require('http');
     
   });
   
-  app.get('/about', function(req, res){
-    res.sendFile(__dirname+'/about.html');
-  });
+  app.get('/show_user', function(req, res){
   
-  app.get('/form', function(req, res){
-    res.sendFile(__dirname+'/form.html');
+    User.find({},function(err,data){
+      
+      if(err)throw err;
+      res.render('user',{users:data})
+      console.log(data);
+    });
   });
   
   server.listen(process.env.PORT, process.env.IP, function(){

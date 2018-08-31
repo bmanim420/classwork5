@@ -1,11 +1,39 @@
 <!DOCTYPE html>
-
 <html>
-    <title>
-        Classwork 5
-    </title>
-    <body>
-        <h1>Life is awesome!</h1>
-    </body>
-    
+<head>
+<title>Technical Support Page</title>
+</head>
+<body>
+
+<form >
+    <h3>Username: </h3>
+<input type="text" id="name"><br>
+<h3>Email: </h3>
+<input type="text" id="email"><br><br>
+<h3>Issue Description</h3>
+<textarea type="textarea" name="issue" id="issue"/></textarea><br><br>
+<button type="button" id="submit">SUBMIT</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+  var user = {user:"", email:"", issue:""};
+  $('#submit').click(function(){
+    user.name = $('#name').val();
+    user.email = $('#email').val();
+    user.issue = $('#issue').val();
+    $.ajax({
+      method: "POST",
+      url:"/submit_user",
+      data: user
+      }).done(function(response){
+        console.log(response);
+      }).fail(function(response){
+        console.log(response);
+        $("#error").text("Something went wrong! Try again.");
+    });
+  });
+  
+</script>
+</body>
 </html>
